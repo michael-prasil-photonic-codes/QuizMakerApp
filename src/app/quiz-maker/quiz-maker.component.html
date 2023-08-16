@@ -1,7 +1,7 @@
 <div>
     <div>QUIZ MAKER</div>
 
-    <ng-container *ngIf="categories && difficulties; then content else loading"/>
+    <ng-container *ngIf="categories; then content else loading"/>
 </div>
 
 <ng-template #loading>
