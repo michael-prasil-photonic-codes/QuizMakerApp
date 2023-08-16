@@ -1,6 +1,6 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
-import { Categories, Difficulty, TriviaService } from '../trivia.service';
+import { Categories, Category, Difficulty, TriviaService } from '../trivia.service';
 
 @Component({
   selector: 'app-quiz-maker',
@@ -8,25 +8,33 @@ import { Categories, Difficulty, TriviaService } from '../trivia.service';
   styleUrls: ['./quiz-maker.component.scss']
 })
 export class QuizMakerComponent implements AfterViewInit {
+  @ViewChild('categorySelect') categorySelect!: ElementRef;
+  @ViewChild('difficultySelect') difficultySelect!: ElementRef;
+  
   public categories!: Categories;
-  public difficulties!: string[];
+  public difficulties: string[];
 
-  public category!: number;
-  public difficulty!: Difficulty;
+  public category!: Category;
+  public difficulty: Difficulty;
 
   public constructor(private triviaService: TriviaService) {
+    this.difficulties = Object.keys(Difficulty);
+    this.difficulty = Difficulty.Easy;
   }
 
   public ngAfterViewInit(): void {
     this.triviaService.getCategories().subscribe((categories) => {
       this.categories = categories;
-    });
+      this.category = this.categories.trivia_categories[0];
 
-    this.difficulties = Object.keys(Difficulty);
+      this.categorySelect.nativeElement.value = this.category.id;
+      this.difficultySelect.nativeElement.value = this.difficulty;
+    });
   }
 
   public onCategorySelected(value: string): void {
-    this.category = Number(value);
+    const categoryForid = this.categories.trivia_categories.find((category) => category.id === Number(value));
+    this.category = categoryForid ? categoryForid : this.categories.trivia_categories[0];
   }
 
   public onDifficultySelected(value: string): void {
