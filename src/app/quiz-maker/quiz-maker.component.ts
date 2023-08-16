@@ -11,6 +11,9 @@ export class QuizMakerComponent implements AfterViewInit {
   public categories!: Categories;
   public difficulties!: string[];
 
+  public category!: number;
+  public difficulty!: Difficulty;
+
   public constructor(private triviaService: TriviaService) {
   }
 
@@ -22,6 +25,17 @@ export class QuizMakerComponent implements AfterViewInit {
     this.difficulties = Object.keys(Difficulty);
   }
 
+  public onCategorySelected(value: string): void {
+    this.category = Number(value);
+  }
+
+  public onDifficultySelected(value: string): void {
+    this.difficulty = value as Difficulty;
+  }
+
   public createQuiz(): void {
+    this.triviaService.getQuestions(this.category, this.difficulty).subscribe((questions) => {
+      console.log(questions);
+    });
   }
 }

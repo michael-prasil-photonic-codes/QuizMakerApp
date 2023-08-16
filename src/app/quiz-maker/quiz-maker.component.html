@@ -9,11 +9,11 @@
 </ng-template>
 
 <ng-template #content>
-    <select id="categorySelect" name="categories">
+    <select #categorySelect id="categorySelect" name="categories" (change)="onCategorySelected(categorySelect.value)">
         <option *ngFor="let category of categories.trivia_categories" [value]="category.id">{{ category.name }}</option>
     </select>
 
-    <select id="difficultySelect" name="difficulties">
+    <select #difficultySelect id="difficultySelect" name="difficulties" (change)="onDifficultySelected(difficultySelect.value)">
         <option *ngFor="let difficulty of difficulties" [value]="difficulty">{{ difficulty }}</option>
     </select>
 
