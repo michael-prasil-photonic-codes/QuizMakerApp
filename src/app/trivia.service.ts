@@ -11,6 +11,10 @@ export interface Categories {
   trivia_categories: Category[];
 }
 
+export enum Type {
+  Multiple = 'multiple',
+}
+
 export enum Difficulty {
   Easy = 'easy',
   Medium = 'medium',
@@ -19,7 +23,7 @@ export enum Difficulty {
 
 export interface Question {
   category: string;
-  type: string;
+  type: Type;
   difficulty: Difficulty;
   question: string;
   correct_answer: string;
@@ -42,7 +46,7 @@ export class TriviaService {
     return this.http.get<Categories>('https://opentdb.com/api_category.php');
   }
 
-  public getQuestions(categrory: number, difficulty: Difficulty): Observable<Questions> {
-    return this.http.get<Questions>(`https://opentdb.com/api.php?amount=5&category=${categrory}&difficulty=${difficulty}&type=multiple`);
+  public getQuestions(categrory: Category, difficulty: Difficulty): Observable<Questions> {
+    return this.http.get<Questions>(`https://opentdb.com/api.php?amount=5&category=${categrory.id}&difficulty=${difficulty}&type=multiple`);
   }
 }
