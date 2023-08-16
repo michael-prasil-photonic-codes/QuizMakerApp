@@ -25,7 +25,6 @@ export class TriviaService {
   }
 
   public getCategories(): Observable<Categories> {
-    console.log('LOL');
     return this.http.get<Categories>('https://opentdb.com/api_category.php');
   }
 
