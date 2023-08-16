@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 
 import { Categories, Category, Difficulty, TriviaService } from '../trivia.service';
 
@@ -8,9 +8,6 @@ import { Categories, Category, Difficulty, TriviaService } from '../trivia.servi
   styleUrls: ['./quiz-maker.component.scss']
 })
 export class QuizMakerComponent implements AfterViewInit {
-  @ViewChild('categorySelect') categorySelect!: ElementRef;
-  @ViewChild('difficultySelect') difficultySelect!: ElementRef;
-  
   public categories!: Categories;
   public difficulties: string[];
 
@@ -26,9 +23,6 @@ export class QuizMakerComponent implements AfterViewInit {
     this.triviaService.getCategories().subscribe((categories) => {
       this.categories = categories;
       this.category = this.categories.trivia_categories[0];
-
-      this.categorySelect.nativeElement.value = this.category.id;
-      this.difficultySelect.nativeElement.value = this.difficulty;
     });
   }
 
