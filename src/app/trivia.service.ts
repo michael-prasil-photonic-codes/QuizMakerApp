@@ -17,6 +17,20 @@ export enum Difficulty {
   Hard = 'hard'
 }
 
+export interface Question {
+  category: string;
+  type: string;
+  difficulty: Difficulty;
+  question: string;
+  correct_answer: string;
+  incorrect_answers: string[];
+}
+
+export interface Questions {
+  response_code: number;
+  results: Question[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +42,7 @@ export class TriviaService {
     return this.http.get<Categories>('https://opentdb.com/api_category.php');
   }
 
-  public getQuestions() {
+  public getQuestions(categrory: number, difficulty: Difficulty): Observable<Questions> {
+    return this.http.get<Questions>(`https://opentdb.com/api.php?amount=5&category=${categrory}&difficulty=${difficulty}&type=multiple`);
   }
 }
