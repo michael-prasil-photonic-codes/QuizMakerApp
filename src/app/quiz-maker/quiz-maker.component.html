@@ -1,1 +1,21 @@
-<p>quiz-maker works!</p>
+<div>
+    <div>QUIZ MAKER</div>
+
+    <ng-container *ngIf="categories && difficulties; then content else loading"/>
+</div>
+
+<ng-template #loading>
+    <div>Loading...</div>
+</ng-template>
+
+<ng-template #content>
+    <select id="categorySelect" name="categories">
+        <option *ngFor="let category of categories.trivia_categories" [value]="category.id">{{ category.name }}</option>
+    </select>
+
+    <select id="difficultySelect" name="difficulties">
+        <option *ngFor="let difficulty of difficulties" [value]="difficulty">{{ difficulty }}</option>
+    </select>
+
+    <button id="createBtn" (click)="createQuiz()">Create</button>
+</ng-template>
