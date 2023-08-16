@@ -4,6 +4,7 @@ import { TriviaService } from '../trivia.service';
 import { Category } from '../category.model';
 import { Categories } from '../categories.model';
 import { Difficulty } from '../difficulty.model';
+import { Questions } from '../questions.model';
 
 @Component({
   selector: 'app-quiz-maker',
@@ -12,10 +13,12 @@ import { Difficulty } from '../difficulty.model';
 })
 export class QuizMakerComponent implements AfterViewInit {
   public categories!: Categories;
-  public difficulties: string[];
-
   public category!: Category;
+
+  public difficulties: string[];
   public difficulty: Difficulty;
+
+  public questions!: Questions;
 
   public constructor(private triviaService: TriviaService) {
     this.difficulties = Object.keys(Difficulty);
@@ -40,7 +43,7 @@ export class QuizMakerComponent implements AfterViewInit {
 
   public createQuiz(): void {
     this.triviaService.getQuestions(this.category, this.difficulty).subscribe((questions) => {
-      console.log(questions);
+      this.questions = questions;
     });
   }
 }
