@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { QuestionComponent } from './question/question.component';
 import { QuizMakerComponent } from './quiz-maker/quiz-maker.component';
+import { QuizResultsComponent } from './quiz-results/quiz-results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuizComponent,
     QuestionComponent,
-    QuizMakerComponent
+    QuizMakerComponent,
+    QuizResultsComponent
   ],
   imports: [
     BrowserModule,
