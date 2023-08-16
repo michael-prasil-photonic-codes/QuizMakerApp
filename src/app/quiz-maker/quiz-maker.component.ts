@@ -1,6 +1,9 @@
 import { AfterViewInit, Component } from '@angular/core';
 
-import { Categories, Category, Difficulty, TriviaService } from '../trivia.service';
+import { TriviaService } from '../trivia.service';
+import { Category } from '../category.model';
+import { Categories } from '../categories.model';
+import { Difficulty } from '../difficulty.model';
 
 @Component({
   selector: 'app-quiz-maker',

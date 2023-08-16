@@ -2,38 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from  '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export interface Category {
-  id: number;
-  name: string;
-}
-
-export interface Categories {
-  trivia_categories: Category[];
-}
-
-export enum Type {
-  Multiple = 'multiple',
-}
-
-export enum Difficulty {
-  Easy = 'easy',
-  Medium = 'medium',
-  Hard = 'hard'
-}
-
-export interface Question {
-  category: string;
-  type: Type;
-  difficulty: Difficulty;
-  question: string;
-  correct_answer: string;
-  incorrect_answers: string[];
-}
-
-export interface Questions {
-  response_code: number;
-  results: Question[];
-}
+import { Category } from './category.model';
+import { Categories } from './categories.model';
+import { Difficulty } from './difficulty.model';
+import { Questions } from './questions.model';
 
 @Injectable({
   providedIn: 'root'
