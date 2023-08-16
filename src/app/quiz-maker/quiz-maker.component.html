@@ -18,4 +18,8 @@
     </select>
 
     <button id="createBtn" (click)="createQuiz()">Create</button>
+
+    <ng-container *ngIf="questions">
+        <app-quiz [questions]="questions"></app-quiz>
+    </ng-container>
 </ng-template>
