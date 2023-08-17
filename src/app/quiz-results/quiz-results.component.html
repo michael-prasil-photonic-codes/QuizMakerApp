@@ -1,7 +1,7 @@
 <div>
     <div>RESULTS</div>
 
-    <ng-container *ngIf="quizService.currentGame?.questions">
+    <ng-container *ngIf="quizService.currentGame && quizService.currentGame.questions">
         <app-quiz [questions]="quizService.currentGame.questions"></app-quiz>
     </ng-container>
 
