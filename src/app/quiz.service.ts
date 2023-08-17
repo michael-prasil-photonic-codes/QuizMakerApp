@@ -27,4 +27,8 @@ export class QuizService {
       this.currentGame.questions = questions;
     });
   }
+
+  public getIndexForCurrentGame(): number {
+    return this.games.length;
+  }
 }

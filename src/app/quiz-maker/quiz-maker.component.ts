@@ -52,6 +52,6 @@ export class QuizMakerComponent implements AfterViewInit {
   }
 
   public submit(): void {
-    this.router.navigate(['/', 1]);
+    this.router.navigate(['/', this.quizService.getIndexForCurrentGame()]);
   }
 }
