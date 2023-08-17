@@ -6,7 +6,7 @@ import { Questions } from '../questions.model';
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
-  styleUrls: ['./quiz.component.scss']
+  styleUrls: ['./quiz.component.scss'],
 })
 export class QuizComponent {
   @Input()
@@ -17,8 +17,7 @@ export class QuizComponent {
   @Output()
   public isAnswered = new EventEmitter<boolean>();
 
-  public constructor(public quizService: QuizService) {
-  }
+  public constructor(public quizService: QuizService) {}
 
   public checkIfIsAnswered(index: number, answer: string | undefined): void {
     this.quizService.setAnswer(index, answer);
