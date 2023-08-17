@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Questions } from '../questions.model';
 
@@ -10,4 +10,16 @@ import { Questions } from '../questions.model';
 export class QuizComponent {
   @Input()
   public questions!: Questions;
+
+  public areAnswered: boolean[] = [];
+
+  @Output()
+  public isAnswered = new EventEmitter<boolean>();
+
+  public checkIfIsAnswered(index: number, isAnswered: boolean): void {
+    this.areAnswered[index] = isAnswered;
+    if (this.areAnswered.every((answered) => answered)) {
+      this.isAnswered.emit(true);
+    }
+  }
 }
