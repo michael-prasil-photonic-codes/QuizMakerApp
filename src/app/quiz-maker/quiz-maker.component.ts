@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TriviaService } from '../trivia.service';
@@ -21,7 +21,12 @@ export class QuizMakerComponent implements AfterViewInit {
 
   public isAnswered: boolean;
 
-  public constructor(private router: Router, private triviaService: TriviaService, public quizService: QuizService) {
+  public constructor(
+    private router: Router,
+    private triviaService: TriviaService,
+    public quizService: QuizService,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {
     this.difficulties = Object.keys(Difficulty);
     this.difficulty = Difficulty.Easy;
     this.isAnswered = false;
@@ -49,6 +54,7 @@ export class QuizMakerComponent implements AfterViewInit {
 
   public checkIfIsAnswered(isAnswered: boolean): void {
     this.isAnswered = isAnswered;
+    this.changeDetectorRef.detectChanges();
   }
 
   public submit(): void {
