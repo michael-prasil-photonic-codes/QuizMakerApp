@@ -12,6 +12,7 @@ export class QuestionComponent implements AfterViewInit {
   public question!: Question;
 
   public answers: string[] = [];
+  public selectedAnswer: string | undefined;
 
   public ngAfterViewInit(): void {
     this.answers.push(this.question.correct_answer);
@@ -27,5 +28,9 @@ export class QuestionComponent implements AfterViewInit {
       array[j] = temp;
     }
     return array;
+  }
+
+  public selectAnswer(answer: string): void {
+    this.selectedAnswer = answer;
   }
 }

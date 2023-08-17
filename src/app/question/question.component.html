@@ -1,1 +1,6 @@
-<p>question works!</p>
+<div>
+    <div>{{ question.question }}</div>
+    <div>
+        <button *ngFor="let answer of answers" [class]="selectedAnswer === answer ? 'selectedAnswer' : 'answer'" (click)="selectAnswer(answer)">{{ answer }}</button>
+    </div>
+</div>
