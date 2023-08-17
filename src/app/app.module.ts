@@ -15,15 +15,10 @@ import { QuizResultsComponent } from './quiz-results/quiz-results.component';
     QuizComponent,
     QuestionComponent,
     QuizMakerComponent,
-    QuizResultsComponent
+    QuizResultsComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

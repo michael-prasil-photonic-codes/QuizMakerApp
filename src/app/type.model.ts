@@ -1,3 +1,3 @@
 export enum Type {
-  Multiple = 'multiple'
+  Multiple = 'multiple',
 }

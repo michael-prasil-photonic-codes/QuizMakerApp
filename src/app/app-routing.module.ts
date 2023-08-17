@@ -6,12 +6,11 @@ import { QuizResultsComponent } from './quiz-results/quiz-results.component';
 
 const routes: Routes = [
   { path: '', component: QuizMakerComponent },
-  { path: 'results', component: QuizResultsComponent}
+  { path: 'results', component: QuizResultsComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
