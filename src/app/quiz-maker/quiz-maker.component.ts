@@ -1,4 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { TriviaService } from '../trivia.service';
 import { Category } from '../category.model';
@@ -22,7 +23,7 @@ export class QuizMakerComponent implements AfterViewInit {
 
   public isAnswered: boolean;
 
-  public constructor(private triviaService: TriviaService) {
+  public constructor(private router: Router, private triviaService: TriviaService) {
     this.difficulties = Object.keys(Difficulty);
     this.difficulty = Difficulty.Easy;
     this.isAnswered = false;
@@ -55,6 +56,6 @@ export class QuizMakerComponent implements AfterViewInit {
   }
 
   public submit(): void {
-    console.log('Submit');
+    this.router.navigate(['/', 1]);
   }
 }
