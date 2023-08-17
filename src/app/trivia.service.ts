@@ -19,6 +19,6 @@ export class TriviaService {
   }
 
   public getQuestions(categrory: Category, difficulty: Difficulty): Observable<Questions> {
-    return this.http.get<Questions>(`https://opentdb.com/api.php?amount=5&category=${categrory.id}&difficulty=${difficulty}&type=multiple`);
+    return this.http.get<Questions>(`https://opentdb.com/api.php?amount=5&category=${categrory.id}&difficulty=${difficulty.toLowerCase()}&type=multiple`);
   }
 }
