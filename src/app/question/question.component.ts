@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 import { QuizService } from '../quiz.service';
 import { Question } from '../question.model';
@@ -6,7 +12,7 @@ import { Question } from '../question.model';
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
-  styleUrls: ['./question.component.scss']
+  styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent implements AfterViewInit {
   @Input()
@@ -20,8 +26,7 @@ export class QuestionComponent implements AfterViewInit {
   @Output()
   public answered = new EventEmitter<string | undefined>();
 
-  public constructor(public quizService: QuizService) {
-  }
+  public constructor(public quizService: QuizService) {}
 
   public ngAfterViewInit(): void {
     this.answers.push(this.question.correct_answer);
@@ -50,7 +55,10 @@ export class QuestionComponent implements AfterViewInit {
         return 'answer';
       }
     } else {
-      if (this.selectedAnswer === answer && this.selectedAnswer !== this.question.correct_answer) {
+      if (
+        this.selectedAnswer === answer &&
+        this.selectedAnswer !== this.question.correct_answer
+      ) {
         return 'wrongAnswer';
       } else if (this.question.correct_answer === answer) {
         return 'selectedAnswer';

@@ -1,13 +1,12 @@
 <div>
-    <div [innerHTML]="question.question"></div>
-    <div>
-        <button
-            *ngFor="let answer of answers"
-            [class]="getClass(answer)"
-            [class.answer-hover-effect]="quizService.isEditable"
-            (click)="selectAnswer(answer)"
-            [innerHTML]="answer"
-        >
-        </button>
-    </div>
+  <div [innerHTML]="question.question"></div>
+  <div>
+    <button
+      *ngFor="let answer of answers"
+      [class]="getClass(answer)"
+      [class.answer-hover-effect]="quizService.isEditable"
+      (click)="selectAnswer(answer)"
+      [innerHTML]="answer"
+    ></button>
+  </div>
 </div>
