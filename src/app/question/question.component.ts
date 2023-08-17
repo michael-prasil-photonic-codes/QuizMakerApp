@@ -42,6 +42,24 @@ export class QuestionComponent implements AfterViewInit {
     }
   }
 
+  public getClass(answer: string): string {
+    if (this.quizService.isEditable) {
+      if (this.selectedAnswer === answer) {
+        return 'selectedAnswer';
+      } else {
+        return 'answer';
+      }
+    } else {
+      if (this.selectedAnswer === answer && this.selectedAnswer !== this.question.correct_answer) {
+        return 'wrongAnswer';
+      } else if (this.question.correct_answer === answer) {
+        return 'selectedAnswer';
+      } else {
+        return 'answer';
+      }
+    }
+  }
+
   public selectAnswer(answer: string): void {
     if (this.quizService.isEditable) {
       this.selectedAnswer = this.selectedAnswer !== answer ? answer : undefined;

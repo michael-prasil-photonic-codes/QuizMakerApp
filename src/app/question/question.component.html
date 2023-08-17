@@ -3,7 +3,7 @@
     <div>
         <button
             *ngFor="let answer of answers"
-            [class]="selectedAnswer === answer ? 'selectedAnswer' : 'answer'"
+            [class]="getClass(answer)"
             [class.answer-hover-effect]="quizService.isEditable"
             (click)="selectAnswer(answer)"
             [innerHTML]="answer"
