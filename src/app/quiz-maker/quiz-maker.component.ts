@@ -54,7 +54,7 @@ export class QuizMakerComponent implements AfterViewInit {
     this.isAnswered = isAnswered;
   }
 
-  public areQuestionsAnswered(): boolean {
-    return true;
+  public submit(): void {
+    console.log('Submit');
   }
 }

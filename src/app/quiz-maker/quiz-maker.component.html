@@ -17,13 +17,13 @@
         <option *ngFor="let difficulty of difficulties" [value]="difficulty">{{ difficulty }}</option>
     </select>
 
-    <button id="createBtn" (click)="createQuiz()">Create</button>
+    <button id="createBtn" class="create" (click)="createQuiz()">Create</button>
 
     <ng-container *ngIf="questions">
         <app-quiz [questions]="questions" (isAnswered)="checkIfIsAnswered($event)"></app-quiz>
     </ng-container>
 
     <div *ngIf="isAnswered">
-        <button>Submit</button>
+        <button class="submit" (click)="submit()">Submit</button>
     </div>
 </ng-template>
