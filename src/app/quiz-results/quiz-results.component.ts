@@ -21,13 +21,11 @@ export class QuizResultsComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.gameIndex = Number(params.get('id'));
-      this.quizService.loadGame(this.gameIndex);
+    this.gameIndex = Number(this.route.snapshot.paramMap.get('id'));
+    this.quizService.loadGame(this.gameIndex);
 
-      this.score = this.quizService.getScore();
-      this.changeDetectorRef.detectChanges();
-    });
+    this.score = this.quizService.getScore();
+    this.changeDetectorRef.detectChanges();
   }
 
   public getColorForScore(): string {
