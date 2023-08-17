@@ -35,6 +35,22 @@ export class QuizService {
     }
   }
 
+  public getScore(): number {
+    if (!this.currentGame) {
+      return NaN;
+    }
+
+    let score: number = 0;
+
+    for (let index = 0; index < this.games.length; index++) {
+      if (this.currentGame.questions.results[index].correct_answer === this.currentGame.answers[index]) {
+        score++;
+      }
+    }
+
+    return score;
+  }
+
   public resetQuiz(): void {
     this.currentGame = undefined;
     this.currentGameIndex = undefined;
