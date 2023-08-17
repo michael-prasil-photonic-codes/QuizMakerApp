@@ -16,5 +16,7 @@ export class QuizResultsComponent implements AfterViewInit {
   }
 
   public createQuiz(): void {
+    this.quizService.resetQuiz();
+    this.router.navigate(['/']);
   }
 }
