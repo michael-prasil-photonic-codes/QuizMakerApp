@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { QuizService } from '../quiz.service';
 
@@ -14,16 +14,12 @@ export class QuizResultsComponent implements AfterViewInit {
 
   public constructor(
     private router: Router,
-    private route: ActivatedRoute,
     public quizService: QuizService,
     private changeDetectorRef: ChangeDetectorRef
   ) {
   }
 
   public ngAfterViewInit(): void {
-    this.gameIndex = Number(this.route.snapshot.paramMap.get('id'));
-    this.quizService.loadGame(this.gameIndex);
-
     this.score = this.quizService.getScore();
     this.changeDetectorRef.detectChanges();
   }

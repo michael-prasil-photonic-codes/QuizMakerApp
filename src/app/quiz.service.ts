@@ -9,9 +9,6 @@ import { Difficulty } from './difficulty.model';
   providedIn: 'root'
 })
 export class QuizService {
-  private games: QuizGame[] = [];
-
-  public currentGameIndex: number | undefined;
   public currentGame: QuizGame | undefined;
 
   public isEditable: boolean;
@@ -23,8 +20,6 @@ export class QuizService {
   public createQuiz(category: Category, difficulty: Difficulty): void {
     this.triviaService.getQuestions(category, difficulty).subscribe((questions) => {
       this.currentGame = new QuizGame();
-      this.games.push(this.currentGame);
-      this.currentGameIndex = this.games.length - 1;
       this.currentGame.questions = questions;
     });
   }
@@ -54,17 +49,5 @@ export class QuizService {
 
   public resetQuiz(): void {
     this.currentGame = undefined;
-    this.currentGameIndex = undefined;
-  }
-
-  public loadGame(gameIndex: number): void {
-    if (this.currentGameIndex === gameIndex) {
-      return;
-    }
-
-    this.isEditable = false;
-
-    this.currentGame = this.games[gameIndex];
-    this.currentGameIndex = gameIndex;
   }
 }

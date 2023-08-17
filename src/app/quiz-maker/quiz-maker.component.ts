@@ -61,6 +61,6 @@ export class QuizMakerComponent implements AfterViewInit {
 
   public submit(): void {
     this.quizService.isEditable = false;
-    this.router.navigate(['/', this.quizService.currentGameIndex]);
+    this.router.navigate(['/results']);
   }
 }
