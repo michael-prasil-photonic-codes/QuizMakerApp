@@ -5,7 +5,7 @@
         <app-quiz [questions]="quizService.currentGame.questions"></app-quiz>
     </ng-container>
 
-    <div [class]="getColorForScore()">You scored {{ score }} out of 5</div>
+    <div [class]="getColorForScore()">You scored {{ score ?? '?' }} out of 5</div>
 
     <div>
         <button class="another" (click)="createQuiz()">Create a new quiz</button>
