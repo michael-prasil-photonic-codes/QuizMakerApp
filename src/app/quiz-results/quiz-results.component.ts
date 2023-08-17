@@ -6,7 +6,7 @@ import { QuizService } from '../quiz.service';
 @Component({
   selector: 'app-quiz-results',
   templateUrl: './quiz-results.component.html',
-  styleUrls: ['./quiz-results.component.scss']
+  styleUrls: ['./quiz-results.component.scss'],
 })
 export class QuizResultsComponent implements AfterViewInit {
   public gameIndex: number | undefined;
@@ -16,8 +16,7 @@ export class QuizResultsComponent implements AfterViewInit {
     private router: Router,
     public quizService: QuizService,
     private changeDetectorRef: ChangeDetectorRef
-  ) {
-  }
+  ) {}
 
   public ngAfterViewInit(): void {
     this.score = this.quizService.getScore();
