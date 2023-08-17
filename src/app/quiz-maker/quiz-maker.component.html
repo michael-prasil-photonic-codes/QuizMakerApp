@@ -19,7 +19,7 @@
 
     <button id="createBtn" class="create" (click)="createQuiz()">Create</button>
 
-    <ng-container *ngIf="quizService.currentGame.questions">
+    <ng-container *ngIf="quizService.currentGame?.questions">
         <app-quiz [questions]="quizService.currentGame.questions" (isAnswered)="checkIfIsAnswered($event)"></app-quiz>
     </ng-container>
 
