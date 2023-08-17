@@ -1,7 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Questions } from '../questions.model';
+import { QuizService } from '../quiz.service';
 
 @Component({
   selector: 'app-quiz-results',
@@ -9,9 +9,7 @@ import { Questions } from '../questions.model';
   styleUrls: ['./quiz-results.component.scss']
 })
 export class QuizResultsComponent implements AfterViewInit {
-  public questions!: Questions;
-
-  public constructor(private router: Router) {
+  public constructor(private router: Router, public quizService: QuizService) {
   }
 
   public ngAfterViewInit(): void {

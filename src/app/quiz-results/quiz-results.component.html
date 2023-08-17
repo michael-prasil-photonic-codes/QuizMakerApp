@@ -1,8 +1,8 @@
 <div>
     <div>RESULTS</div>
 
-    <ng-container *ngIf="questions">
-        <app-quiz [questions]="questions"></app-quiz>
+    <ng-container *ngIf="quizService.currentGame.questions">
+        <app-quiz [questions]="quizService.currentGame.questions"></app-quiz>
     </ng-container>
 
     <div>

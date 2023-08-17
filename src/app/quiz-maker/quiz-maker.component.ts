@@ -2,10 +2,10 @@ import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TriviaService } from '../trivia.service';
+import { QuizService } from '../quiz.service';
 import { Category } from '../category.model';
 import { Categories } from '../categories.model';
 import { Difficulty } from '../difficulty.model';
-import { Questions } from '../questions.model';
 
 @Component({
   selector: 'app-quiz-maker',
@@ -19,11 +19,9 @@ export class QuizMakerComponent implements AfterViewInit {
   public difficulties: string[];
   public difficulty: Difficulty;
 
-  public questions!: Questions;
-
   public isAnswered: boolean;
 
-  public constructor(private router: Router, private triviaService: TriviaService) {
+  public constructor(private router: Router, private triviaService: TriviaService, public quizService: QuizService) {
     this.difficulties = Object.keys(Difficulty);
     this.difficulty = Difficulty.Easy;
     this.isAnswered = false;
@@ -46,9 +44,7 @@ export class QuizMakerComponent implements AfterViewInit {
   }
 
   public createQuiz(): void {
-    this.triviaService.getQuestions(this.category, this.difficulty).subscribe((questions) => {
-      this.questions = questions;
-    });
+    this.quizService.createQuiz(this.category, this.difficulty);
   }
 
   public checkIfIsAnswered(isAnswered: boolean): void {
