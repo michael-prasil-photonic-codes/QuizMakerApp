@@ -42,8 +42,9 @@ export class QuizService {
 
     let score: number = 0;
 
-    for (let index = 0; index < this.games.length; index++) {
+    for (let index = 0; index < this.currentGame.questions.results.length; index++) {
       if (this.currentGame.questions.results[index].correct_answer === this.currentGame.answers[index]) {
+        // console.log(`${this.currentGame.questions.results[index].correct_answer} === ${this.currentGame.answers[index]}`);
         score++;
       }
     }
