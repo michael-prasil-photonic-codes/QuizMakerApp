@@ -11,7 +11,7 @@ export class QuizComponent {
   @Input()
   public questions!: Questions;
 
-  public areAnswered: boolean[] = [];
+  public areAnswered: boolean[] = Array(5).fill(false);
 
   @Output()
   public isAnswered = new EventEmitter<boolean>();
