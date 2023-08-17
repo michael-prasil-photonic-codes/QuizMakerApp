@@ -36,8 +36,8 @@ export class QuizMakerComponent implements AfterViewInit {
   }
 
   public onCategorySelected(value: string): void {
-    const categoryForid = this.categories.trivia_categories.find((category) => category.id === Number(value));
-    this.category = categoryForid ? categoryForid : this.categories.trivia_categories[0];
+    const categoryForId = this.categories.trivia_categories.find((category) => category.id === Number(value));
+    this.category = categoryForId ? categoryForId : this.categories.trivia_categories[0];
   }
 
   public onDifficultySelected(value: string): void {
