@@ -5,6 +5,13 @@
     background-color: white;
 }
 
+.answer:hover {
+    color: white;
+    border: 1px solid green;
+    border-radius: 4px;
+    background-color: green;
+}
+
 .selectedAnswer {
     color: white;
     border: 1px solid green;
