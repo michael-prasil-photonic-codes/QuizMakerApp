@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { QuizService } from '../quiz.service';
 import { Questions } from '../questions.model';
 
 @Component({
@@ -16,8 +17,12 @@ export class QuizComponent {
   @Output()
   public isAnswered = new EventEmitter<boolean>();
 
-  public checkIfIsAnswered(index: number, isAnswered: boolean): void {
-    this.areAnswered[index] = isAnswered;
+  public constructor(public quizService: QuizService) {
+  }
+
+  public checkIfIsAnswered(index: number, answer: string | undefined): void {
+    this.quizService.currentGame.answers[index] = answer ? answer : '';
+    this.areAnswered[index] = answer ? true : false;
     if (this.areAnswered.every((answered) => answered)) {
       this.isAnswered.emit(true);
     } else {
