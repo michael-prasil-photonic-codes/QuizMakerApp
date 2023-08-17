@@ -1,7 +1,7 @@
 <app-question
     *ngFor="let question of questions.results; let i = index"
     [question]="question"
-    [initialAnswer]="quizService.currentGame.answers[i]"
+    [initialAnswer]="quizService.currentGame ? quizService.currentGame.answers[i] : undefined"
     (answered)="checkIfIsAnswered(i, $event)"
 >
 </app-question>

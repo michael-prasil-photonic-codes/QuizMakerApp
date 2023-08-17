@@ -21,7 +21,7 @@ export class QuizComponent {
   }
 
   public checkIfIsAnswered(index: number, answer: string | undefined): void {
-    this.quizService.currentGame.answers[index] = answer ? answer : '';
+    this.quizService.setAnswer(index, answer);
     this.areAnswered[index] = answer ? true : false;
     if (this.areAnswered.every((answered) => answered)) {
       this.isAnswered.emit(true);
