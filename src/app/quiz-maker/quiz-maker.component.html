@@ -20,6 +20,10 @@
     <button id="createBtn" (click)="createQuiz()">Create</button>
 
     <ng-container *ngIf="questions">
-        <app-quiz [questions]="questions"></app-quiz>
+        <app-quiz [questions]="questions" (isAnswered)="checkIfIsAnswered($event)"></app-quiz>
     </ng-container>
+
+    <div *ngIf="isAnswered">
+        <button>Submit</button>
+    </div>
 </ng-template>

@@ -20,9 +20,12 @@ export class QuizMakerComponent implements AfterViewInit {
 
   public questions!: Questions;
 
+  public isAnswered: boolean;
+
   public constructor(private triviaService: TriviaService) {
     this.difficulties = Object.keys(Difficulty);
     this.difficulty = Difficulty.Easy;
+    this.isAnswered = false;
   }
 
   public ngAfterViewInit(): void {
@@ -45,5 +48,13 @@ export class QuizMakerComponent implements AfterViewInit {
     this.triviaService.getQuestions(this.category, this.difficulty).subscribe((questions) => {
       this.questions = questions;
     });
+  }
+
+  public checkIfIsAnswered(isAnswered: boolean): void {
+    this.isAnswered = isAnswered;
+  }
+
+  public areQuestionsAnswered(): boolean {
+    return true;
   }
 }
