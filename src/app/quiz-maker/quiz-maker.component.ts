@@ -10,7 +10,7 @@ import { Difficulty } from '../difficulty.model';
 @Component({
   selector: 'app-quiz-maker',
   templateUrl: './quiz-maker.component.html',
-  styleUrls: ['./quiz-maker.component.scss']
+  styleUrls: ['./quiz-maker.component.scss'],
 })
 export class QuizMakerComponent implements AfterViewInit {
   public categories!: Categories;
@@ -42,8 +42,12 @@ export class QuizMakerComponent implements AfterViewInit {
   }
 
   public onCategorySelected(value: string): void {
-    const categoryForId = this.categories.trivia_categories.find((category) => category.id === Number(value));
-    this.category = categoryForId ? categoryForId : this.categories.trivia_categories[0];
+    const categoryForId = this.categories.trivia_categories.find(
+      (category) => category.id === Number(value)
+    );
+    this.category = categoryForId
+      ? categoryForId
+      : this.categories.trivia_categories[0];
   }
 
   public onDifficultySelected(value: string): void {

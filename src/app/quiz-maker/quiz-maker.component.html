@@ -1,29 +1,51 @@
 <div>
-    <div>QUIZ MAKER</div>
+  <div>QUIZ MAKER</div>
 
-    <ng-container *ngIf="categories; then content else loading"/>
+  <ng-container *ngIf="categories; then content; else loading" />
 </div>
 
 <ng-template #loading>
-    <div>Loading...</div>
+  <div>Loading...</div>
 </ng-template>
 
 <ng-template #content>
-    <select #categorySelect id="categorySelect" name="categories" (change)="onCategorySelected(categorySelect.value)">
-        <option *ngFor="let category of categories.trivia_categories" [value]="category.id">{{ category.name }}</option>
-    </select>
+  <select
+    #categorySelect
+    id="categorySelect"
+    name="categories"
+    (change)="onCategorySelected(categorySelect.value)"
+  >
+    <option
+      *ngFor="let category of categories.trivia_categories"
+      [value]="category.id"
+    >
+      {{ category.name }}
+    </option>
+  </select>
 
-    <select #difficultySelect id="difficultySelect" name="difficulties" (change)="onDifficultySelected(difficultySelect.value)">
-        <option *ngFor="let difficulty of difficulties" [value]="difficulty">{{ difficulty }}</option>
-    </select>
+  <select
+    #difficultySelect
+    id="difficultySelect"
+    name="difficulties"
+    (change)="onDifficultySelected(difficultySelect.value)"
+  >
+    <option *ngFor="let difficulty of difficulties" [value]="difficulty">
+      {{ difficulty }}
+    </option>
+  </select>
 
-    <button id="createBtn" class="create" (click)="createQuiz()">Create</button>
+  <button id="createBtn" class="create" (click)="createQuiz()">Create</button>
 
-    <ng-container *ngIf="quizService.currentGame && quizService.currentGame.questions">
-        <app-quiz [questions]="quizService.currentGame.questions" (isAnswered)="checkIfIsAnswered($event)"></app-quiz>
-    </ng-container>
+  <ng-container
+    *ngIf="quizService.currentGame && quizService.currentGame.questions"
+  >
+    <app-quiz
+      [questions]="quizService.currentGame.questions"
+      (isAnswered)="checkIfIsAnswered($event)"
+    ></app-quiz>
+  </ng-container>
 
-    <div *ngIf="isAnswered">
-        <button class="submit" (click)="submit()">Submit</button>
-    </div>
+  <div *ngIf="isAnswered">
+    <button class="submit" (click)="submit()">Submit</button>
+  </div>
 </ng-template>
