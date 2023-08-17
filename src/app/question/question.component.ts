@@ -10,17 +10,23 @@ import { Question } from '../question.model';
 export class QuestionComponent implements AfterViewInit {
   @Input()
   public question!: Question;
+  @Input()
+  public initialAnswer: string | undefined;
 
   public answers: string[] = [];
   public selectedAnswer: string | undefined;
 
   @Output()
-  public isAnswered = new EventEmitter<boolean>();
+  public answered = new EventEmitter<string | undefined>();
 
   public ngAfterViewInit(): void {
     this.answers.push(this.question.correct_answer);
     this.answers.push(...this.question.incorrect_answers);
     this.durstenfeldShuffle(this.answers);
+    if (this.initialAnswer && this.answers.includes(this.initialAnswer)) {
+      this.selectedAnswer = this.initialAnswer;
+      this.answered.emit(this.selectedAnswer);
+    }
   }
 
   private durstenfeldShuffle<T>(array: T[]): void {
@@ -33,12 +39,7 @@ export class QuestionComponent implements AfterViewInit {
   }
 
   public selectAnswer(answer: string): void {
-    if (this.selectedAnswer !== answer) {
-      this.selectedAnswer = answer;
-      this.isAnswered.emit(true);
-    } else {
-      this.selectedAnswer = undefined;
-      this.isAnswered.emit(false);
-    }
+    this.selectedAnswer = this.selectedAnswer !== answer ? answer : undefined;
+    this.answered.emit(this.selectedAnswer);
   }
 }
