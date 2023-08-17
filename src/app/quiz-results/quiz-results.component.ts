@@ -25,7 +25,7 @@ export class QuizResultsComponent implements AfterViewInit {
   }
 
   public getColorForScore(): string {
-    if (!this.score) {
+    if (this.score === undefined) {
       return 'loading-score';
     }
 
