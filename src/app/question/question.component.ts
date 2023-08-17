@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Question } from '../question.model';
 
@@ -13,6 +13,9 @@ export class QuestionComponent implements AfterViewInit {
 
   public answers: string[] = [];
   public selectedAnswer: string | undefined;
+
+  @Output()
+  public isAnswered = new EventEmitter<boolean>();
 
   public ngAfterViewInit(): void {
     this.answers.push(this.question.correct_answer);
@@ -30,10 +33,12 @@ export class QuestionComponent implements AfterViewInit {
   }
 
   public selectAnswer(answer: string): void {
-    this.selectedAnswer = answer;
-  }
-
-  public isAnswered(): boolean {
-    return this.selectedAnswer !== undefined;
+    if (this.selectedAnswer !== answer) {
+      this.selectedAnswer = answer;
+      this.isAnswered.emit(true);
+    } else {
+      this.selectedAnswer = undefined;
+      this.isAnswered.emit(false);
+    }
   }
 }
