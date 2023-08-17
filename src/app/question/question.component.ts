@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { QuizService } from '../quiz.service';
 import { Question } from '../question.model';
 
 @Component({
@@ -18,6 +19,9 @@ export class QuestionComponent implements AfterViewInit {
 
   @Output()
   public answered = new EventEmitter<string | undefined>();
+
+  public constructor(public quizService: QuizService) {
+  }
 
   public ngAfterViewInit(): void {
     this.answers.push(this.question.correct_answer);
@@ -39,7 +43,9 @@ export class QuestionComponent implements AfterViewInit {
   }
 
   public selectAnswer(answer: string): void {
-    this.selectedAnswer = this.selectedAnswer !== answer ? answer : undefined;
-    this.answered.emit(this.selectedAnswer);
+    if (this.quizService.isEditable) {
+      this.selectedAnswer = this.selectedAnswer !== answer ? answer : undefined;
+      this.answered.emit(this.selectedAnswer);
+    }
   }
 }

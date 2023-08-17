@@ -36,6 +36,8 @@ export class QuizMakerComponent implements AfterViewInit {
     this.triviaService.getCategories().subscribe((categories) => {
       this.categories = categories;
       this.category = this.categories.trivia_categories[0];
+
+      this.quizService.isEditable = true;
     });
   }
 
@@ -58,6 +60,7 @@ export class QuizMakerComponent implements AfterViewInit {
   }
 
   public submit(): void {
+    this.quizService.isEditable = false;
     this.router.navigate(['/', this.quizService.currentGameIndex]);
   }
 }

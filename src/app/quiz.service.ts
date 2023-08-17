@@ -14,7 +14,10 @@ export class QuizService {
   public currentGameIndex: number | undefined;
   public currentGame: QuizGame | undefined;
 
+  public isEditable: boolean;
+
   constructor(private triviaService: TriviaService) {
+    this.isEditable = false;
   }
 
   public createQuiz(category: Category, difficulty: Difficulty): void {
