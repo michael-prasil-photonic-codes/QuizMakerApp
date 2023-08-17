@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { QuizService } from '../quiz.service';
 
@@ -9,30 +9,38 @@ import { QuizService } from '../quiz.service';
   styleUrls: ['./quiz-results.component.scss']
 })
 export class QuizResultsComponent implements AfterViewInit {
-  public score: number;
+  public gameIndex: number | undefined;
+  public score: number | undefined;
 
   public constructor(
     private router: Router,
+    private route: ActivatedRoute,
     public quizService: QuizService,
     private changeDetectorRef: ChangeDetectorRef
   ) {
-    this.score = NaN;
   }
 
   public ngAfterViewInit(): void {
-    this.score = this.quizService.getScore();
-    this.changeDetectorRef.detectChanges();
+    this.route.paramMap.subscribe(params => {
+      this.gameIndex = Number(params.get('id'));
+      this.quizService.loadGame(this.gameIndex);
+
+      this.score = this.quizService.getScore();
+      this.changeDetectorRef.detectChanges();
+    });
   }
 
   public getColorForScore(): string {
+    if (!this.score) {
+      return 'loading-score';
+    }
+
     if (this.score >= 4) {
       return 'good-score';
     } else if (this.score >= 2) {
       return 'okay-score';
-    } else if (this.score >= 0) {
-      return 'bad-score';
     } else {
-      return 'loading-score';
+      return 'bad-score';
     }
   }
 
