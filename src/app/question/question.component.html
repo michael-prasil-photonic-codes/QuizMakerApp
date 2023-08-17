@@ -1,12 +1,12 @@
 <div>
-    <div>{{ question.question }}</div>
+    <div [innerHTML]="question.question"></div>
     <div>
         <button
             *ngFor="let answer of answers"
             [class]="selectedAnswer === answer ? 'selectedAnswer' : 'answer'"
             (click)="selectAnswer(answer)"
+            [innerHTML]="answer"
         >
-            {{ answer }}
         </button>
     </div>
 </div>
