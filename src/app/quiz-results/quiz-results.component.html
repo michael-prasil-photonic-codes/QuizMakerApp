@@ -1,1 +1,11 @@
-<p>quiz-results works!</p>
+<div>
+    <div>RESULTS</div>
+
+    <ng-container *ngIf="questions">
+        <app-quiz [questions]="questions"></app-quiz>
+    </ng-container>
+
+    <div>
+        <button class="another" (click)="createQuiz()">Create a new quiz</button>
+    </div>
+</div>
