@@ -32,4 +32,8 @@ export class QuestionComponent implements AfterViewInit {
   public selectAnswer(answer: string): void {
     this.selectedAnswer = answer;
   }
+
+  public isAnswered(): boolean {
+    return this.selectedAnswer !== undefined;
+  }
 }
