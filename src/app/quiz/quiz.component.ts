@@ -20,6 +20,8 @@ export class QuizComponent {
     this.areAnswered[index] = isAnswered;
     if (this.areAnswered.every((answered) => answered)) {
       this.isAnswered.emit(true);
+    } else {
+      this.isAnswered.emit(false);
     }
   }
 }
