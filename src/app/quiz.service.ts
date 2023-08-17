@@ -56,4 +56,15 @@ export class QuizService {
     this.currentGame = undefined;
     this.currentGameIndex = undefined;
   }
+
+  public loadGame(gameIndex: number): void {
+    if (this.currentGameIndex === gameIndex) {
+      return;
+    }
+
+    this.isEditable = false;
+
+    this.currentGame = this.games[gameIndex];
+    this.currentGameIndex = gameIndex;
+  }
 }
